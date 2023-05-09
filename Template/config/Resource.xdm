@@ -1,0 +1,62 @@
+<?xml version='1.0'?>
+<datamodel version="7.0"
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd"
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd"
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd"
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar"
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd"
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd"
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd"
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd"
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="@SILICON_NAME@" type="AR-PACKAGE">
+            <d:lst type="ELEMENTS">
+              <d:chc name="@MODULE@" type="AR-ELEMENT" value="MODULE-DEF">
+                <v:ctr type="MODULE-DEF">
+                  <a:a name="ADMIN-DATA" type="ADMIN-DATA">
+                    <ad:ADMIN-DATA>
+                      <ad:DOC-REVISIONS>
+                        <ad:DOC-REVISION>
+                          <ad:REVISION-LABEL>4.4.0</ad:REVISION-LABEL>
+                          <ad:ISSUED-BY>AUTOSAR</ad:ISSUED-BY>
+                        </ad:DOC-REVISION>
+                      </ad:DOC-REVISIONS>
+                    </ad:ADMIN-DATA>
+                  </a:a>
+                  <a:a name="DESC"
+                       value="EN: Configuration of the Resource module."/>
+                  <a:a name="RELEASE" value="asc:4.4.0"/>
+                  <a:a name="LOWER-MULTIPLICITY" value="1"/>
+			      <a:a name="UPPER-MULTIPLICITY" value="1"/>
+                  <a:a name="UUID" value="ECUC:a72ca44c-5093-4ed1-b6c1-e197d31fdd75"/>
+				  <v:ctr name="ResourceGeneralContainer" type="IDENTIFIABLE">
+					<a:a name="UUID" value="ECUC:a72ca55c-5039-4ed1-b6c1-e197d31fdd75"/>
+					<a:a name="DESC" value="EN: resource general container"/>
+					<v:var name="ResourcePackage" type="ENUMERATION">
+					  <a:a name="DESC" value="EN: resource package"/>
+					  <a:a name="ORIGIN" value="HuLa"/>
+					  <a:a name="IMPLEMENTATIONCONFIGCLASS" type="IMPLEMENTATIONCONFIGCLASS">
+						<icc:v vclass="PreCompile">VariantPreCompile</icc:v>
+					  </a:a>
+					  <a:a name="SYMBOLICNAMEVALUE" value="false"/>
+					  <a:a name="UUID" value="ECUC:a72ca58c-5309-4ed1-b6c1-e197d31fdd75"/>
+					  <a:da name="DEFAULT" value="hula_01"/>
+					  <a:da name="RANGE">
+						<a:v>hula_01</a:v>
+						<a:v>hula_02</a:v>
+					  </a:da>
+					</v:var>
+				  </v:ctr>
+
+				</v:ctr>
+              </d:chc>
+            </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

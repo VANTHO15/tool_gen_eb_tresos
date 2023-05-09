@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<project name="tresos" default="all" basedir=".">
+
+  <ng.getgeneratorvar name="outputDir" property="MyOutputDir" />
+  <ng.getgeneratorvar name="postBuildVariant" property="MyPostBuildVariant"/>
+
+  <target name="SrcFilesCheck">
+    <condition property="VarSrcFilesCheck" value="true" else="false">
+        <and>
+           <available file="${MyOutputDir}\src" type="dir"/>
+           <isset property="MyPostBuildVariant"/>
+           <not>
+            <equals arg1="${MyPostBuildVariant}" arg2=""/>
+           </not>
+        </and>   
+    </condition>     
+  </target>
+  
+  <target name="IncludeFilesCheck">
+    <condition property="VarIncludeFilesCheck" value="true"  else="false">
+        <and>
+           <available file="${MyOutputDir}\include" type="dir"/>
+           <isset property="MyPostBuildVariant"/>
+           <not>
+            <equals arg1="${MyPostBuildVariant}" arg2=""/>
+           </not>
+        </and>   
+    </condition> 
+  </target>
+  
+  <target name="renameSrcFiles" if="${VarSrcFilesCheck}" depends="SrcFilesCheck">
+    <move todir="${MyOutputDir}\src">
+        <fileset dir="${MyOutputDir}\src">
+            <include name="*_PB.c"/>
+            <exclude name="*_VS*_PB.c"/>
+        </fileset>
+        <mapper type="glob" from="*PB.c" to="*${MyPostBuildVariant}_PB.c"/>
+    </move>
+  </target>
+  
+  <target name="renameIncludeFiles" if="${VarIncludeFilesCheck}" depends="IncludeFilesCheck">
+    <move todir="${MyOutputDir}\include">
+        <fileset dir="${MyOutputDir}\include">
+            <include name="*_PB.h"/>
+            <exclude name="*_VS*_PB.h"/>
+        </fileset>
+        <mapper type="glob" from="*PB.h" to="*${MyPostBuildVariant}_PB.h"/>
+    </move>
+  </target>
+    
+  <target name="all" depends="renameSrcFiles,renameIncludeFiles ">
+  </target>
+
+</project>
+
