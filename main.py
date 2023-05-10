@@ -22,6 +22,10 @@ def Read_argument():
 
 class mTest():
 
+    UserConfig = "UserConfig.py"
+    if os.path.exists(UserConfig):
+        exec(open(UserConfig).read())
+
     variable = "Variable.py"
     if os.path.exists(variable):
         exec(open(variable).read())
